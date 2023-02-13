@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "720199091076",
+    "project_id": "rekomendasi-obat",
+    "storage_bucket": "rekomendasi-obat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:720199091076:android:87f7f92d6305306c10d3d1",
+        "android_client_info": {
+          "package_name": "com.mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "720199091076-amakb9gdu8ncbi2qrvcbmqnfvju1vsin.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAANZizx6cJqVmrm292KgUrvzO3cXdJD6I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "720199091076-amakb9gdu8ncbi2qrvcbmqnfvju1vsin.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
