@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {LogBox} from 'react-native';
+import {LogBox, BackHandler, Alert} from 'react-native';
 import {AuthProvider} from './src/context/AuthContext';
 import AppNav from './src/navigation/AppNav';
 import {
@@ -13,6 +13,29 @@ const App = () => {
   useEffect(() => {
     requestUserPermission();
     NotificationListener();
+    const backAction = () => {
+      Alert.alert('Perhatian!', 'Apakah ingin keluar dari aplikasi ini?', [
+        {
+          text: 'Cancel',
+          onPress: () => null,
+          style: 'cancel',
+        },
+        {
+          text: 'YES',
+          onPress: async () => {
+            BackHandler.exitApp();
+          },
+        },
+      ]);
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backAction,
+    );
+
+    return () => backHandler.remove();
   });
   return (
     <AuthProvider>

@@ -13,11 +13,11 @@ const Items = ({
   ...props
 }) => {
   let activeColors = colors;
-  const mode = 'DEV';
+  const mode = 'PROD';
   const imageDir =
     mode === 'DEV'
       ? 'http://10.0.2.2:3001/uploads/images'
-      : 'http://10.0.2.2:3001/uploads/images';
+      : 'http://116.193.190.138:8080/uploads/images';
 
   const uri = `${imageDir}/${image}`;
   return (

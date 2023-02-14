@@ -30,7 +30,7 @@ const FormReminder = ({navigation}) => {
   const [jmlObat, setJmlObat] = useState('');
   const [aturanPakai, setAturanPakai] = useState('');
   const [jenisObat, setJenisObat] = useState('');
-  const [totalSekaliPakai, setTotalSekaliPakai] = useState('');
+  const [totalSekaliPakai, setTotalSekaliPakai] = useState(null);
 
   const validation = () => {
     if (namaObat === '') {
@@ -64,6 +64,9 @@ const FormReminder = ({navigation}) => {
       };
       try {
         const {status, data} = await api.createReminderObat(payload);
+        console.log('payload', payload);
+        console.log('status', status);
+        console.log('data', data);
         if (status) {
           Alert.alert('Success', 'Berhasil menambahkan data');
           navigation.navigate('Jadwal Minum Obat');
