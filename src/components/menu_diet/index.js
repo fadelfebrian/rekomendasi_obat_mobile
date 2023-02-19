@@ -99,8 +99,7 @@ const ListMenuDiet = ({navigation}) => {
             }}>
             Menu Diet yang direkomendasikan
           </Text>
-          {/* {menuDiet?.menu_diet?.map((val, index) => { */}
-          <>
+          {menuDiet?.menu_diet?.map((val, index) => (
             <View
               style={{
                 border: 1,
@@ -131,7 +130,7 @@ const ListMenuDiet = ({navigation}) => {
                   color: '#333',
                   marginBottom: 5,
                 }}>
-                - {menuDiet?.menu_diet?.waktu_makan}
+                - {val?.waktu_makan}
               </Text>
               <Text
                 key={`buahpilihan_`}
@@ -144,24 +143,20 @@ const ListMenuDiet = ({navigation}) => {
                 }}>
                 Bahan Makanan
               </Text>
-
-              <View>
-                {menuDiet?.bahanMakanan?.map(val => {
-                  return (
-                    <Text
-                      key={`buahpilihan_`}
-                      style={{
-                        fontFamily: 'Roboto-Medium',
-                        fontSize: 15,
-                        fontWeight: 'bold',
-                        color: '#333',
-                        marginBottom: 5,
-                      }}>
-                      - {val.bahan_makanan} {val.urt} {val?.satuan}
-                    </Text>
-                  );
-                })}
-              </View>
+              {val?.bahan_makanans?.map((bhn_makanan, idx_bhn_makanan) => (
+                <Text
+                  key={`buahpilihan_`}
+                  style={{
+                    fontFamily: 'Roboto-Medium',
+                    fontSize: 15,
+                    fontWeight: 'bold',
+                    color: '#333',
+                    marginBottom: 5,
+                  }}>
+                  - {bhn_makanan.bahan_makanan} {bhn_makanan.urt}{' '}
+                  {bhn_makanan?.satuan}
+                </Text>
+              ))}
               <Text
                 key={`buahpilihan_`}
                 style={{
@@ -173,24 +168,19 @@ const ListMenuDiet = ({navigation}) => {
                 }}>
                 Pilihan Makanan
               </Text>
-              <View>
-                {menuDiet?.pilihanMakanan?.map(val => {
-                  return (
-                    <Text
-                      key={`buahpilihan_`}
-                      style={{
-                        fontFamily: 'Roboto-Medium',
-                        fontSize: 15,
-                        fontWeight: 'bold',
-                        color: '#333',
-                        marginBottom: 5,
-                      }}>
-                      - {val.pilihan_makanan} {val.makanan}
-                    </Text>
-                  );
-                })}
-              </View>
-
+              {val?.pilihan_makanans?.map((plhn_makanan, idx_plhn_makanan) => (
+                <Text
+                  key={`buahpilihan_`}
+                  style={{
+                    fontFamily: 'Roboto-Medium',
+                    fontSize: 15,
+                    fontWeight: 'bold',
+                    color: '#333',
+                    marginBottom: 5,
+                  }}>
+                  - {plhn_makanan.pilihan_makanan} {plhn_makanan.makanan}
+                </Text>
+              ))}
               <Text
                 key={`buahpilihan_`}
                 style={{
@@ -211,7 +201,7 @@ const ListMenuDiet = ({navigation}) => {
                   color: '#333',
                   marginBottom: 5,
                 }}>
-                - {menuDiet?.menu_diet?.bila_masih_lapar}
+                - {val?.bila_masih_lapar}
               </Text>
               <Text
                 key={`buahpilihan_`}
@@ -233,7 +223,7 @@ const ListMenuDiet = ({navigation}) => {
                   color: '#333',
                   marginBottom: 5,
                 }}>
-                - {menuDiet?.menu_diet?.cara_memasak}
+                - {val?.cara_memasak}
               </Text>
               <Text
                 key={`buahpilihan_`}
@@ -255,7 +245,7 @@ const ListMenuDiet = ({navigation}) => {
                   color: '#333',
                   marginBottom: 5,
                 }}>
-                - {menuDiet?.menu_diet?.pantangan}
+                - {val?.pantangan}
               </Text>
               <Text
                 key={`buahpilihan_`}
@@ -277,40 +267,10 @@ const ListMenuDiet = ({navigation}) => {
                   color: '#333',
                   marginBottom: 5,
                 }}>
-                - {menuDiet?.menu_diet?.anjuran_olahraga}
+                - {val?.anjuran_olahraga}
               </Text>
             </View>
-          </>
-          {/* })} */}
-          {/* {menuDiet?.olahraga?.length > 0 && (
-              <View
-                style={{
-                  border: 1,
-                  borderColor: 'black',
-                  borderWidth: 1,
-                  borderRadius: 5,
-                  padding: 5,
-                  marginBottom: 10,
-                  backgroundColor: '#68B984',
-                }}>
-                {menuDiet?.olahraga?.map((val, index) => {
-                  return (
-                    <Text
-                      key={`olahraga_`}
-                      style={{
-                        fontFamily: 'Roboto-Medium',
-                        fontSize: 15,
-                        fontWeight: 'bold',
-                        color: '#333',
-                        marginBottom: 5,
-                      }}>
-                      - {val}
-                    </Text>
-                  );
-                })}
-              </View>
-            </View>
-          )} */}
+          ))}
         </View>
       </ScrollView>
     </SafeAreaView>

@@ -85,6 +85,26 @@ const Biodata = ({navigation}) => {
               }}>
               Keterangan : {detailUser?.resultGdp}
             </Text>
+            <Text
+              style={{
+                fontFamily: 'Roboto-Medium',
+                fontSize: 15,
+                fontWeight: 'bold',
+                color: '#333',
+              }}>
+              Nilai HbA1C
+            </Text>
+            <ChartBmi dataBmi={detailUser?.dataHba} />
+            <Text
+              style={{
+                alignSelf: 'center',
+                fontFamily: 'Roboto-Medium',
+                fontSize: 15,
+                fontWeight: 'bold',
+                color: '#333',
+              }}>
+              Keterangan : {detailUser?.resultHba}
+            </Text>
           </>
         </View>
       </ScrollView>

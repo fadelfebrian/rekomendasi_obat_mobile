@@ -2,6 +2,8 @@ import React, {useEffect} from 'react';
 import {LogBox, BackHandler, Alert} from 'react-native';
 import {AuthProvider} from './src/context/AuthContext';
 import AppNav from './src/navigation/AppNav';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import {
   NotificationListener,
   requestUserPermission,
@@ -23,6 +25,7 @@ const App = () => {
         {
           text: 'YES',
           onPress: async () => {
+            AsyncStorage.removeItem('userToken');
             BackHandler.exitApp();
           },
         },
