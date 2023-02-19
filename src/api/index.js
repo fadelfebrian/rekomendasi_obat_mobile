@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // import { API_DEV, API_PROD, API_ENV } from "react-native-dotenv";
 
-const MODE = 'DEV';
+const MODE = 'PROD';
 const API_DEV = 'http://10.0.2.2:3001/';
 const API_PROD = 'http://116.193.190.138:8080/';
 
