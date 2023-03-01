@@ -10,6 +10,7 @@ import Feather from 'react-native-vector-icons/Feather';
 import ProfileScreen from '../screens/ProfileScreen';
 import HomeScreen from '../screens/HomeScreen';
 import DetailScreen from '../screens/DetailScreen';
+import EditReminderScreen from '../screens/EditReminderScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -72,6 +73,19 @@ const TabNavigator = () => {
       <Tab.Screen
         name="Detail"
         component={DetailScreen}
+        options={({route}) => ({
+          tabBarStyle: {
+            display: getTabBarVisibility(route),
+            backgroundColor: '#AD40AF',
+          },
+          tabBarIcon: ({color, size}) => (
+            <Ionicons name="home-outline" color={color} size={size} />
+          ),
+        })}
+      />
+      <Tab.Screen
+        name="EditReminder"
+        component={EditReminderScreen}
         options={({route}) => ({
           tabBarStyle: {
             display: getTabBarVisibility(route),

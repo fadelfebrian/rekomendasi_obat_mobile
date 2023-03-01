@@ -3,7 +3,7 @@ import {Text, View, SafeAreaView, ScrollView, Alert} from 'react-native';
 import {AuthContext} from '../../context/AuthContext';
 import ChartBmi from './chart_bmi';
 
-const Biodata = ({navigation}) => {
+const Bmi = ({navigation}) => {
   const {fetchDetailUserById, detailUser} = useContext(AuthContext);
 
   useEffect(() => {
@@ -34,7 +34,10 @@ const Biodata = ({navigation}) => {
               }}>
               Kadar GDS
             </Text>
-            <ChartBmi dataBmi={detailUser?.dataGds} />
+            <ChartBmi
+              dataBmi={detailUser?.dataGds}
+              dataDate={detailUser?.dataDate}
+            />
             <Text
               style={{
                 alignSelf: 'center',
@@ -54,7 +57,10 @@ const Biodata = ({navigation}) => {
               }}>
               Indeks Masa Tubuh (IMT)
             </Text>
-            <ChartBmi dataBmi={detailUser?.dataBmi} />
+            <ChartBmi
+              dataBmi={detailUser?.dataBmi}
+              dataDate={detailUser?.dataDate}
+            />
             <Text
               style={{
                 alignSelf: 'center',
@@ -74,7 +80,10 @@ const Biodata = ({navigation}) => {
               }}>
               Glukosa Darah Puasa (Gdp)
             </Text>
-            <ChartBmi dataBmi={detailUser?.dataGdp} />
+            <ChartBmi
+              dataBmi={detailUser?.dataGdp}
+              dataDate={detailUser?.dataDate}
+            />
             <Text
               style={{
                 alignSelf: 'center',
@@ -94,7 +103,10 @@ const Biodata = ({navigation}) => {
               }}>
               Nilai HbA1C
             </Text>
-            <ChartBmi dataBmi={detailUser?.dataHba} />
+            <ChartBmi
+              dataBmi={detailUser?.dataHba}
+              dataDate={detailUser?.dataDate}
+            />
             <Text
               style={{
                 alignSelf: 'center',
@@ -112,4 +124,4 @@ const Biodata = ({navigation}) => {
   );
 };
 
-export default Biodata;
+export default Bmi;

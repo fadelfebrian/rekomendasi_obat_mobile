@@ -1,5 +1,16 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {SafeAreaView, ScrollView, Text, View} from 'react-native';
+import {
+  SafeAreaView,
+  ScrollView,
+  Text,
+  View,
+  TouchableOpacity,
+  Alert,
+} from 'react-native';
+import {
+  TouchableHighlight,
+  TouchableWithoutFeedback,
+} from 'react-native-gesture-handler';
 import api from '../../api';
 import {AuthContext} from '../../context/AuthContext';
 const ListJadwalMinum = ({navigation}) => {
@@ -15,6 +26,15 @@ const ListJadwalMinum = ({navigation}) => {
       return err;
     }
   };
+  const deleteReminderObat = async id => {
+    try {
+      const {data, status} = await api.deleteReminderObat(id);
+      fetchAllReminderObat();
+      return status;
+    } catch (err) {
+      return err;
+    }
+  };
   useEffect(() => {
     fetchAllReminderObat();
     const willFocusSubscription = navigation.addListener('focus', () => {
@@ -22,7 +42,23 @@ const ListJadwalMinum = ({navigation}) => {
     });
     return willFocusSubscription;
   }, []);
-
+  const backAction = id => {
+    console.log('press');
+    Alert.alert('Perhatian!', 'Apakah ingin menghapus data ini?', [
+      {
+        text: 'Cancel',
+        onPress: () => null,
+        style: 'cancel',
+      },
+      {
+        text: 'YES',
+        onPress: async () => {
+          deleteReminderObat(id);
+        },
+      },
+    ]);
+    return true;
+  };
   return (
     <SafeAreaView style={{flex: 1, justifyContent: 'center', padding: 20}}>
       <ScrollView>
@@ -41,62 +77,72 @@ const ListJadwalMinum = ({navigation}) => {
           {jadwalMinum?.map((val, index) => {
             return (
               <>
-                <View
-                  key={index}
-                  style={{
-                    border: 1,
-                    borderColor: 'black',
-                    borderWidth: 1,
-                    borderRadius: 5,
-                    padding: 5,
-                    marginBottom: 10,
-                    backgroundColor: '#68B984',
+                <TouchableOpacity
+                  delayLongPress={1000}
+                  onLongPress={() => backAction(val.id)}
+                  onPress={() => {
+                    /* 1. Navigate to the Details route with params */
+                    navigation.navigate('EditReminder', {
+                      itemId: val.id,
+                    });
                   }}>
-                  <Text
-                    key={`waktumakan_${index}`}
+                  <View
+                    key={index}
                     style={{
-                      fontFamily: 'Roboto-Medium',
-                      fontSize: 15,
-                      fontWeight: 'bold',
-                      color: '#333',
-                      marginBottom: 5,
+                      border: 1,
+                      borderColor: 'black',
+                      borderWidth: 1,
+                      borderRadius: 5,
+                      padding: 5,
+                      marginBottom: 10,
+                      backgroundColor: '#68B984',
                     }}>
-                    - {val.nama_obat?.toUpperCase()}
-                  </Text>
-                  <Text
-                    key={`rekomendasi_${index}`}
-                    style={{
-                      fontFamily: 'Roboto-Medium',
-                      fontSize: 15,
-                      fontWeight: '500',
-                      color: '#333',
-                      marginBottom: 5,
-                    }}>
-                    Jumlah Obat : {val.jml_obat}
-                  </Text>
-                  <Text
-                    key={`tempWaktu_${index}`}
-                    style={{
-                      fontFamily: 'Roboto-Medium',
-                      fontSize: 15,
-                      fontWeight: '500',
-                      color: '#333',
-                      marginBottom: 5,
-                    }}>
-                    Jam Minum Obat : {val.tempWaktu}
-                  </Text>
-                  <Text
-                    key={`sisaObat_${index}`}
-                    style={{
-                      fontFamily: 'Roboto-Medium',
-                      fontSize: 15,
-                      fontWeight: '500',
-                      color: '#333',
-                      marginBottom: 5,
-                    }}>
-                    Sisa Obat : {val.sisaObat}
-                  </Text>
-                </View>
+                    <Text
+                      key={`waktumakan_${index}`}
+                      style={{
+                        fontFamily: 'Roboto-Medium',
+                        fontSize: 15,
+                        fontWeight: 'bold',
+                        color: '#333',
+                        marginBottom: 5,
+                      }}>
+                      - {val.nama_obat?.toUpperCase()}
+                    </Text>
+                    <Text
+                      key={`rekomendasi_${index}`}
+                      style={{
+                        fontFamily: 'Roboto-Medium',
+                        fontSize: 15,
+                        fontWeight: '500',
+                        color: '#333',
+                        marginBottom: 5,
+                      }}>
+                      Jumlah Obat : {val.jml_obat}
+                    </Text>
+                    <Text
+                      key={`tempWaktu_${index}`}
+                      style={{
+                        fontFamily: 'Roboto-Medium',
+                        fontSize: 15,
+                        fontWeight: '500',
+                        color: '#333',
+                        marginBottom: 5,
+                      }}>
+                      Jam Minum Obat : {val.tempWaktu}
+                    </Text>
+                    <Text
+                      key={`sisaObat_${index}`}
+                      style={{
+                        fontFamily: 'Roboto-Medium',
+                        fontSize: 15,
+                        fontWeight: '500',
+                        color: '#333',
+                        marginBottom: 5,
+                      }}>
+                      Sisa Obat : {val.sisaObat}
+                    </Text>
+                  </View>
+                </TouchableOpacity>
               </>
             );
           })}

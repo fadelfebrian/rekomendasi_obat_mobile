@@ -87,6 +87,7 @@ const AppStack = () => {
             <AntDesign name="notification" size={22} color={color} />
           ),
         }}
+        initialParams={{itemId: null}}
       />
       <Drawer.Screen
         name="Jadwal Minum Obat"

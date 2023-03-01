@@ -281,10 +281,32 @@ const api = {
       return err;
     }
   },
+  putReminderObat: async (payload, id) => {
+    try {
+      const res = await instance.put(
+        `reminder_obat/putReminderObat/${id}`,
+        payload,
+      );
+      return res.data;
+    } catch (err) {
+      return err;
+    }
+  },
   fetchAllReminderObat: async id_user => {
     try {
       const res = await instance.get(
         `reminder_obat/fetchAllReminderObat/${id_user}`,
+      );
+      return res.data;
+    } catch (err) {
+      return err;
+    }
+  },
+
+  fetchReminderObatById: async id => {
+    try {
+      const res = await instance.get(
+        `reminder_obat/fetchReminderObatById/${id}`,
       );
       return res.data;
     } catch (err) {

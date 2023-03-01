@@ -1,9 +1,9 @@
 import React from 'react';
 import {SafeAreaView, ScrollView} from 'react-native';
 import CustomHeader from '../components/CustomHeader';
-import FormReminder from '../components/reminder/tambah_reminder';
+import FormReminder from '../components/reminder/edit_reminder';
 
-const ReminderScreen = ({navigation, route}) => {
+const EditReminderScreen = ({navigation, route}) => {
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
       <ScrollView>
@@ -14,4 +14,4 @@ const ReminderScreen = ({navigation, route}) => {
   );
 };
 
-export default ReminderScreen;
+export default EditReminderScreen;
